@@ -1,0 +1,14 @@
+#write the python version
+FROM python:3.12.4
+
+#create the working directory
+WORKDIR /app
+
+#copy all the folders and files in /app dir
+COPY . /app
+
+#install all the dependencies for backend
+RUN pip install -r backend.requirements.txt
+
+#command for run backend
+CMD ["uvicorn","main:app","--reload"]

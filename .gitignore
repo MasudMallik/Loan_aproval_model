@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+backend/pre.ipynb 
+backend/model_tra.ipynb
+
 # Distribution / packaging
 .Python
 build/

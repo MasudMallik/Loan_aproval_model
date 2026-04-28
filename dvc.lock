@@ -1,0 +1,29 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python backend/data_ingestion.py
+    deps:
+    - path: backend/data_ingestion.py
+      hash: md5
+      md5: 7989ef067e108c434d63ddf936d81ebe
+      size: 241
+    - path: data/loan_data.csv
+      hash: md5
+      md5: c13802044748773e03486b5d349d0dcc
+      size: 3610978
+  data_preprocess:
+    cmd: python backend/data_preprocess.py
+    deps:
+    - path: backend/data_preprocess.py
+      hash: md5
+      md5: a8c543eb0168e76889935beacd027911
+      size: 1786
+    - path: data/loan_data.csv
+      hash: md5
+      md5: c13802044748773e03486b5d349d0dcc
+      size: 3610978
+    outs:
+    - path: data/preprocessed.csv
+      hash: md5
+      md5: 80db6cc1026591b18d4ed880a153f8ef
+      size: 3741979
