@@ -14,16 +14,16 @@ app = FastAPI(
 
 
 class LoanData(BaseModel):
-    person_age: int
+    person_age: float
     person_gender: str
     person_education: str
-    person_income: int
+    person_income: float
     person_home_ownership: str
-    loan_amnt: int
+    loan_amnt: float
     loan_intent: str 
     loan_int_rate: float
-    cb_person_cred_hist_length: int
-    credit_score: int
+    cb_person_cred_hist_length: float
+    credit_score: float
     previous_loan_defaults_on_file: str
 
 
@@ -47,5 +47,4 @@ async def predict_data(data: LoanData):
     
     # Predict
     prediction = model.predict(processed)
-    print(prediction)
     return {"prediction": int(prediction[0])}
