@@ -1,18 +1,30 @@
 stages:
-  data_ingestion:
-    cmd: python backend/data_ingestion.py
+  backend/data_ingestion:
+    cmd: python -m backend.data_ingestion
     deps: 
       - data/loan_data.csv
       - backend/data_ingestion.py
-  data_preprocess:
-    cmd: python backend/data_preprocess.py
+  backend/data_preprocess:
+    cmd: python -m backend.data_preprocess
     deps:
       - data/loan_data.csv
       - backend/data_preprocess.py
     outs:
       - data/preprocessed.csv
-  model_train:
-    cmd: python backend/model_train.py
+  backend/model_train:
+    cmd: python -m backend.model_train
     deps:
       - data/preprocessed.csv
       - backend/model_train.py
+    outs:
+      - loan_predict.joblib
+  # backend/main:
+  #   cmd: uvicorn backend.main:app 
+  #   deps:
+  #     - loan_predict.joblib
+  #     - backend/main.py
+  # frontend/main:
+  #   cmd: streamlit run frontend/main.py
+  #   deps:
+  #     - frontend/main.py
+  #     - backend/main.py

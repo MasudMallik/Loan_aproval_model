@@ -9,14 +9,16 @@ from sklearn.naive_bayes import GaussianNB
 from xgboost import XGBClassifier
 import pandas as pd
 from sklearn.metrics import accuracy_score,confusion_matrix,classification_report
-from logger import logging
+from backend.logger import logging
 import joblib
+from sklearn.pipeline import Pipeline
 
-df=pd.read_csv(r"D:\Loan_aproval\Loan_aproval_model\data\preprocessed.csv")
+df=pd.read_csv(r"D:\Loan_aproval\Loan_aproval_model\data\preprocessed.csv",index_col=0)
 y=df["loan_status"]
 x=df.drop(columns="loan_status")
 
 x_train,x_test,y_train,y_test=train_test_split(x,y)
+print(x_train.columns)
 
 
 #Logistic Regression
@@ -208,6 +210,7 @@ mlflow.xgboost.log_model(xgb,"XGB")
 
 #register model
 mlflow.register_model("run:/30a7f73c94c84affab263f66007cc67b/XGB","xgbclassifier",tags={"stage":"production"})
+
 
 #in mlflow we see that xgboost is giving 93 % accuracy 
 file_name="loan_predict.joblib"

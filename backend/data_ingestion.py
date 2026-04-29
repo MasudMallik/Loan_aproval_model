@@ -1,4 +1,4 @@
-from logger import logging
+from backend.logger import logging
 import pandas as pd
 
 try:

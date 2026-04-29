@@ -1,8 +1,9 @@
 import pandas as pd
-from logger import logging
+from backend.logger import logging
 from sklearn.preprocessing import OneHotEncoder,OrdinalEncoder,StandardScaler
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
+import joblib
 
 
 try:
@@ -28,15 +29,20 @@ x_int=x.select_dtypes(include="number")
 #create column transformers
 preprocess=ColumnTransformer(
     transformers=[
-        ("onehotenc",OneHotEncoder(),['person_gender', 'person_home_ownership','loan_intent', 'previous_loan_defaults_on_file']),
+        ("onehotenc",OneHotEncoder(handle_unknown="ignore"),['person_gender', 'person_home_ownership','loan_intent', 'previous_loan_defaults_on_file']),
         ("education",OrdinalEncoder(categories=[['High School', 'Associate', 'Bachelor', 'Master', 'Doctorate']]),["person_education"]),
         ("standard",StandardScaler(),x_int.columns)
     ],
-    remainder="passthrough"
 )
 
 #transform the data
 preprocess.fit(x)
+try:
+    with open("preprocess.joblib","wb") as f:
+        joblib.dump(preprocess,f)
+    logging.info("column transformer downloaded")
+except Exception:
+    logging.info("preprocess not loaded")
 new_x=preprocess.transform(x)
 #convert them into new dataframe
 new_x=pd.DataFrame(new_x,columns=preprocess.get_feature_names_out())

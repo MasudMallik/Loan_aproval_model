@@ -9,6 +9,7 @@ __pycache__/
 backend/pre.ipynb 
 backend/model_tra.ipynb
 
+
 # Distribution / packaging
 .Python
 build/
@@ -219,3 +220,5 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+/loan_predict.joblib
+/preprocess.joblib
