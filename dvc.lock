@@ -27,3 +27,14 @@ stages:
       hash: md5
       md5: 80db6cc1026591b18d4ed880a153f8ef
       size: 3741979
+  model_train:
+    cmd: python backend/model_train.py
+    deps:
+    - path: backend/model_train.py
+      hash: md5
+      md5: 09b26634f8733dab1d65956bd5932a38
+      size: 7304
+    - path: data/preprocessed.csv
+      hash: md5
+      md5: 80db6cc1026591b18d4ed880a153f8ef
+      size: 3741979

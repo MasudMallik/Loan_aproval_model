@@ -11,3 +11,8 @@ stages:
       - backend/data_preprocess.py
     outs:
       - data/preprocessed.csv
+  model_train:
+    cmd: python backend/model_train.py
+    deps:
+      - data/preprocessed.csv
+      - backend/model_train.py
