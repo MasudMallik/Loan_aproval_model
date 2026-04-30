@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . /app
 
 #install all the dependencies for backend
-RUN pip install -r backend.requirements.txt
+RUN pip install -r requirements.txt
 
 #command for run backend
 CMD ["uvicorn","main:app","--reload"]
