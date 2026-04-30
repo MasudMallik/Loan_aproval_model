@@ -35,7 +35,7 @@ import requests
 # Sidebar logout button
 if st.sidebar.button("Logout"):
     # Call backend logout endpoint
-    response = requests.post("http://127.0.0.1:8000/logout",headers={"Authorization": f"Bearer {st.session_state.token["token"]}"})
+    response = requests.post("https://loan-aproval-model.onrender.com/logout",headers={"Authorization": f"Bearer {st.session_state.token["token"]}"})
     del st.session_state["user"]
     if response.status_code == 200:
         st.sidebar.success("Logged out successfully")
