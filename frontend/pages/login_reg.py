@@ -39,6 +39,7 @@ def login():
                                              })
                         if token.status_code==200:
                              st.session_state.token=token.json()
+                             st.session_state.user=result.get("name")
                              st.switch_page("pages/predict.py")
                 else:
                     st.error("Login failed ❌")

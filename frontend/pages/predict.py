@@ -47,6 +47,13 @@ if st.button("Classify",type="primary"):
             st.success("Application Approved")
         else:
             st.warning("Application Rejected")
+        
+
+        if "user" in st.session_state:
+            data["Application"]="Approved" if ans["prediction"]==1 else "rejected"
+            response=requests.post("http://127.0.0.1:8000/save_data",json=data,headers={"Authorization": f"Bearer {st.session_state.token["token"]}"})
+            if response.status_code==200:
+                st.write("data loaded succesfully")
    
 st.divider()
 st.write("!! For storing the results please login...")

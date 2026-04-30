@@ -6,3 +6,4 @@ try:
     logging.info("data frame succesfully loaded")
 except Exception:
     logging.info("data not loaded")
+ 

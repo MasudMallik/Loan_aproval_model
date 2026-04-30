@@ -4,7 +4,7 @@ from sklearn.preprocessing import OneHotEncoder,OrdinalEncoder,StandardScaler
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 import joblib
-
+ 
 
 try:
     df=pd.read_csv("D:\\Loan_aproval\\Loan_aproval_model\\data\\loan_data.csv")

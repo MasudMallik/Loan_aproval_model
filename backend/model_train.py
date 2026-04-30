@@ -20,7 +20,7 @@ x=df.drop(columns="loan_status")
 x_train,x_test,y_train,y_test=train_test_split(x,y)
 
 
-
+ 
 #Logistic Regression
 model=LogisticRegression()
 try:

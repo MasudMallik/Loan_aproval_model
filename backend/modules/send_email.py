@@ -4,12 +4,12 @@ import random
 import os
 from dotenv import load_dotenv
 from pydantic import EmailStr
-
+load_dotenv("backend\.env")
 async def send_otp(email:EmailStr):
     message=EmailMessage()
     message["From"]=os.getenv("sender_name")
     message["To"]=email
-    message["Title"]="Otp verification code"
+    message["Subject"]="Otp verification code"
     otp=random.randint(100000,999999)
     try:
         message.set_content(f"""Hello,

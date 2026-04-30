@@ -12,9 +12,8 @@ import pandas as pd
 import os
 from dotenv import load_dotenv
 from pymongo import MongoClient
-
+load_dotenv("backend/.env")
 client=MongoClient(os.getenv("mongodb"))
-load_dotenv()
 outh2=OAuth2PasswordBearer(tokenUrl="token")
 
 redis_ = Redis(url=os.getenv("redis_url"),token=os.getenv("redis_token"))
@@ -122,3 +121,40 @@ async def predict_data(data: LoanData):
     # Predict
     prediction = model.predict(processed)
     return {"prediction": int(prediction[0])}
+@app.post("/get_data")
+async def get_details(token: str = Depends(outh2)):
+    user = decode_token(token)
+
+    if not user or "email" not in user:
+        return {"error": "Invalid or expired token"}
+
+    email = user.get("email")
+
+    database = client["History"]
+    collections = database[email]
+
+    all_files = list(collections.find())
+
+    # ✅ serialize properly
+    for doc in all_files:
+        doc["_id"] = str(doc["_id"])
+
+    return {"data": all_files}
+
+@app.post("/save_data")
+async def save_data_in_database(request:Request,token:str=Depends(outh2)):
+    data=await request.json()
+    user= decode_token(token)
+    print(user)
+    if not user or "email" not in user:
+        return {"error": "Invalid or expired token"}
+    email=user.get("email")
+    database=client["History"]
+    collections=database[email]
+    collections.insert_one(data)
+    return {"data":"loaded succesfully"}
+
+@app.post("/logout")
+async def user_logout(requests:Request,token:str=Depends(outh2)):
+    token=""
+    return{"Logout":True}
