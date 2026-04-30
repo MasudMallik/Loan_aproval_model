@@ -3,10 +3,10 @@ from fastapi import FastAPI,Request,Depends,BackgroundTasks
 from fastapi.security import OAuth2PasswordBearer
 from upstash_redis import Redis
 import joblib
-from backend.logger import logging
-from backend.modules.hashed import check_password,create_hashed_password
-from backend.modules.send_email import send_otp
-from backend.modules.token import create_token,decode_token
+from logger import logging
+from modules.hashed import check_password,create_hashed_password
+from modules.send_email import send_otp
+from modules.token import create_token,decode_token
 from pydantic import BaseModel,EmailStr,Field
 import pandas as pd
 import os

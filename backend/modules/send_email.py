@@ -27,6 +27,7 @@ async def send_otp(email:EmailStr):
             """)
         await aiosmtplib.send(
             message,
+            port=587,
             hostname=os.getenv("hostname"),
             username=os.getenv("sender_name"),
             use_tls=True,
