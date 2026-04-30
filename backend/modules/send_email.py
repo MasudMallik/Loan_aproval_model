@@ -4,7 +4,7 @@ import random
 import os
 from dotenv import load_dotenv
 from pydantic import EmailStr
-load_dotenv("backend\.env")
+load_dotenv()
 async def send_otp(email:EmailStr):
     message=EmailMessage()
     message["From"]=os.getenv("sender_name")
@@ -30,7 +30,7 @@ async def send_otp(email:EmailStr):
             port=587,
             hostname=os.getenv("hostname"),
             username=os.getenv("sender_name"),
-            use_tls=True,
+            start_tls=True,
             password=os.getenv("password")
         )
     except Exception:

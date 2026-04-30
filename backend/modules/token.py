@@ -2,7 +2,7 @@ from jwt import encode,decode
 from dotenv import load_dotenv
 import datetime
 import os
-load_dotenv("backend/.env")
+load_dotenv()
 def create_token(data:dict)->str:
     user=data.copy()
     user["iat"]=datetime.datetime.utcnow()
