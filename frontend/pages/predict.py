@@ -2,6 +2,12 @@ import streamlit as st
 import requests
 st.title("Loan Approval Prediction")
 
+
+if "user" in st.session_state:
+     st.subheader(f"User: {st.session_state.user}")
+else:
+     st.subheader("User: Guest")
+
 age=st.number_input("Enter your age",max_value=70,min_value=18,value=18)
 gender=st.radio("gender",["male","female"])
 education=st.selectbox("Education: ",['Master', 'Associate', 'High School', 'Bachelor', 'Doctorate'])

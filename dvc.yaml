@@ -1,18 +1,18 @@
 stages:
   backend/data_ingestion:
-    cmd: python -m backend.data_ingestion
+    cmd: python  backend/data_ingestion.py
     deps: 
       - data/loan_data.csv
       - backend/data_ingestion.py
   backend/data_preprocess:
-    cmd: python -m backend.data_preprocess
+    cmd: python  backend/data_preprocess.py
     deps:
       - data/loan_data.csv
       - backend/data_preprocess.py
     outs:
       - data/preprocessed.csv
   backend/model_train:
-    cmd: python -m backend.model_train
+    cmd: python  backend/model_train.py
     deps:
       - data/preprocessed.csv
       - backend/model_train.py

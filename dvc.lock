@@ -44,23 +44,23 @@ stages:
       md5: 1fa3b56e6b158e632434b172538271d1
       size: 261200
   backend/data_ingestion:
-    cmd: python -m backend.data_ingestion
+    cmd: python  backend/data_ingestion.py
     deps:
     - path: backend/data_ingestion.py
       hash: md5
-      md5: 22f0380b2e36da57bcff3437a89c1d5a
-      size: 249
+      md5: 7b09ebbc9742b1e2ba245d117c4feaf1
+      size: 245
     - path: data/loan_data.csv
       hash: md5
       md5: c13802044748773e03486b5d349d0dcc
       size: 3610978
   backend/data_preprocess:
-    cmd: python -m backend.data_preprocess
+    cmd: python  backend/data_preprocess.py
     deps:
     - path: backend/data_preprocess.py
       hash: md5
-      md5: a03b3f7a8404a4ed867b534678d0baa1
-      size: 2004
+      md5: e1244eedeae81163609e11f18a39c03c
+      size: 2000
     - path: data/loan_data.csv
       hash: md5
       md5: c13802044748773e03486b5d349d0dcc
@@ -71,12 +71,12 @@ stages:
       md5: 80db6cc1026591b18d4ed880a153f8ef
       size: 3741979
   backend/model_train:
-    cmd: python -m backend.model_train
+    cmd: python  backend/model_train.py
     deps:
     - path: backend/model_train.py
       hash: md5
-      md5: 8501b89588019898a28fa8269f3d8f28
-      size: 7389
+      md5: 1f0e124e1674827564d9694ac6ff55f8
+      size: 7362
     - path: data/preprocessed.csv
       hash: md5
       md5: 80db6cc1026591b18d4ed880a153f8ef
@@ -84,8 +84,8 @@ stages:
     outs:
     - path: loan_predict.joblib
       hash: md5
-      md5: 7772028806b5c02eec38a2bb4f6c6f6f
-      size: 258929
+      md5: 016f620560ec7214efdb249c4fd61560
+      size: 266685
   backend/main:
     cmd: uvicorn backend.main:app
     deps:

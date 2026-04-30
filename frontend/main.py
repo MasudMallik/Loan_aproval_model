@@ -18,11 +18,7 @@ log_reg=st.Page(
     title="Login and Registration",
     icon="🆕"
 )
-setting=st.Page(
-    page="pages/settings.py",
-    title="Settings",
-    icon="🛠️"
-)
+
 hist=st.Page(
     page="pages/history.py",
     icon="⏮️",
@@ -30,9 +26,22 @@ hist=st.Page(
 )
 
 pages=st.navigation(
-    [home,predict,log_reg,setting,hist]
+    [home,predict,log_reg,hist]
 )
-st.side
+
+import streamlit as st
+import requests
+
+# Sidebar logout button
+if st.sidebar.button("Logout"):
+    # Call backend logout endpoint
+    response = requests.post("http://127.0.0.1:8000/logout")
+    if response.status_code == 200:
+        st.sidebar.success("Logged out successfully")
+    else:
+        st.sidebar.error("Logout failed")
+
+
 
 pages.run()
 # if st.button("click to predict"):

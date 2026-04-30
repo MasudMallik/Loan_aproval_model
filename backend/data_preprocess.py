@@ -1,5 +1,5 @@
 import pandas as pd
-from backend.logger import logging
+from logger import logging
 from sklearn.preprocessing import OneHotEncoder,OrdinalEncoder,StandardScaler
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
@@ -7,7 +7,7 @@ import joblib
 
 
 try:
-    df=pd.read_csv("D:\Loan_aproval\Loan_aproval_model\data\loan_data.csv")
+    df=pd.read_csv("D:\\Loan_aproval\\Loan_aproval_model\\data\\loan_data.csv")
     logging.info("data_loaded succesfully")
 except Exception:
     logging.info("data not loaded")

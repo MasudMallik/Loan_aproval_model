@@ -9,16 +9,16 @@ from sklearn.naive_bayes import GaussianNB
 from xgboost import XGBClassifier
 import pandas as pd
 from sklearn.metrics import accuracy_score,confusion_matrix,classification_report
-from backend.logger import logging
+from logger import logging
 import joblib
 from sklearn.pipeline import Pipeline
 
-df=pd.read_csv(r"D:\Loan_aproval\Loan_aproval_model\data\preprocessed.csv",index_col=0)
+df=pd.read_csv("D:\\Loan_aproval\\Loan_aproval_model\\data\\preprocessed.csv",index_col=0)
 y=df["loan_status"]
 x=df.drop(columns="loan_status")
 
 x_train,x_test,y_train,y_test=train_test_split(x,y)
-print(x_train.columns)
+
 
 
 #Logistic Regression
