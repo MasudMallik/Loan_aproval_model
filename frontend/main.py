@@ -34,13 +34,16 @@ import requests
 
 # Sidebar logout button
 if st.sidebar.button("Logout"):
+    if "user" in st.session_state:
     # Call backend logout endpoint
-    response = requests.post("https://loan-aproval-model.onrender.com/logout",headers={"Authorization": f"Bearer {st.session_state.token["token"]}"})
-    del st.session_state["user"]
-    if response.status_code == 200:
-        st.sidebar.success("Logged out successfully")
+        response = requests.post("https://loan-aproval-model.onrender.com/logout",headers={"Authorization": f"Bearer {st.session_state.token["token"]}"})
+        del st.session_state["user"]
+        if response.status_code == 200:
+            st.sidebar.success("Logged out successfully")
+        else:
+            st.sidebar.error("Logout failed")
     else:
-        st.sidebar.error("Logout failed")
+        st.sidebar.error("You are not loggined")
 
 
 

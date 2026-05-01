@@ -63,7 +63,7 @@ def registration():
         col2.write(" ")
         email=col1.text_input(label="Enter your email-Id: ",placeholder="email@gmail.com",)
         if col2.button("Send otp",type="primary",use_container_width=True):
-            response=requests.post("https://loan-aproval-model.onrender.com/send_code",params={"email":email})
+            response=requests.post("https://email-send-murex.vercel.app/send_code",params={"email":email})
             if response.status_code==200:
                 st.success("otp send in your email")
             else:
@@ -72,7 +72,7 @@ def registration():
         col2.write(" ")
         col2.write(" ")
         if col2.button("Confirm",type="primary",use_container_width=True):
-            response=requests.post("https://loan-aproval-model.onrender.com/verification",params={
+            response=requests.post("https://email-send-murex.vercel.app/verification",params={
                 "otp":otp,
                 "email":email
             })
