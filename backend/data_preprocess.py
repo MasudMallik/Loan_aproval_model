@@ -7,7 +7,7 @@ import joblib
  
 
 try:
-    df=pd.read_csv("data\loan_data.csv")
+    df=pd.read_csv("data\\loan_data.csv")
     logging.info("data_loaded succesfully")
 except Exception:
     logging.info("data not loaded")
@@ -29,7 +29,7 @@ x_int=x.select_dtypes(include="number")
 #create column transformers
 preprocess=ColumnTransformer(
     transformers=[
-        ("onehotenc",OneHotEncoder(handle_unknown="ignore"),['person_gender', 'person_home_ownership','loan_intent', 'previous_loan_defaults_on_file']),
+        ("onehotenc",OneHotEncoder(),['person_gender', 'person_home_ownership','loan_intent', 'previous_loan_defaults_on_file']),
         ("education",OrdinalEncoder(categories=[['High School', 'Associate', 'Bachelor', 'Master', 'Doctorate']]),["person_education"]),
         ("standard",StandardScaler(),x_int.columns)
     ],

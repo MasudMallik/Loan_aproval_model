@@ -220,5 +220,4 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
-/loan_predict.joblib
-/preprocess.joblib
+

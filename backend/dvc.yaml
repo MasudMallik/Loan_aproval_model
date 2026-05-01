@@ -16,8 +16,7 @@ stages:
     deps:
       - data/preprocessed.csv
       - model_train.py
-    outs:
-      - loan_predict.joblib
+  
   # backend/main:
   #   cmd: uvicorn backend.main:app 
   #   deps:

@@ -23,7 +23,7 @@ def login():
         if col1.button("Login", type="primary", use_container_width=True):
             if email and password:
                 response = requests.post(
-                    "http://127.0.0.1:8000/user_login",
+                    "https://loan-aproval-model.onrender.com/user_login",
                     json={"email": email, "password": password}
                 )
                 if response.status_code == 200:
@@ -33,7 +33,7 @@ def login():
                     elif "error" in result:
                          st.error("password didnt match")
                     else:
-                        token=requests.post("http://127.0.0.1:8000/token",
+                        token=requests.post("https://loan-aproval-model.onrender.com/token",
                                              json={
                                                   "name":result.get("name"),"email":result.get("email")
                                              })
@@ -63,7 +63,7 @@ def registration():
         col2.write(" ")
         email=col1.text_input(label="Enter your email-Id: ",placeholder="email@gmail.com",)
         if col2.button("Send otp",type="primary",use_container_width=True):
-            response=requests.post("http://127.0.0.1:8000/send_code",params={"email":email})
+            response=requests.post("https://loan-aproval-model.onrender.com/send_code",params={"email":email})
             if response.status_code==200:
                 st.success("otp send in your email")
             else:
@@ -72,7 +72,7 @@ def registration():
         col2.write(" ")
         col2.write(" ")
         if col2.button("Confirm",type="primary",use_container_width=True):
-            response=requests.post("http://127.0.0.1:8000/verification",params={
+            response=requests.post("https://loan-aproval-model.onrender.com/verification",params={
                 "otp":otp,
                 "email":email
             })
@@ -102,7 +102,7 @@ def registration():
             st.rerun()
         if col1.button("Registration", type="primary", use_container_width=True,disabled= not st.session_state.flag):
                 st.session_state.clear()
-                response=requests.post("http://127.0.0.1:8000/user_register",
+                response=requests.post("https://loan-aproval-model.onrender.com/user_register",
                 json={
                     "name":name,
                     "email":email,
@@ -116,7 +116,7 @@ def registration():
                     if data.get("user_details") == "True":
                         st.info("You already have an account, please login...")
                     else:
-                                tok=requests.post("http://127.0.0.1:8000/token",
+                                tok=requests.post("https://loan-aproval-model.onrender.com/token",
                                                   json={"name":name,"email":email,})
                                 if tok.status_code==200:
                                     token=tok.json()

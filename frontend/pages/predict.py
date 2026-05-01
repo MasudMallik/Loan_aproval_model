@@ -35,7 +35,8 @@ if st.button("Classify",type="primary"):
     "previous_loan_defaults_on_file":prev_lon,
     }
     with st.status("please wait. model is loading...."):
-            response=requests.post("http://127.0.0.1:8000/predict",json=data)
+            response=requests.post("https://loan-aproval-model.onrender.com/predict",json=data)
+            st.write(response.status_code)
             if response.status_code==200:
                 st.success("Succesfully classify the user")
             else:
@@ -51,7 +52,7 @@ if st.button("Classify",type="primary"):
 
         if "user" in st.session_state:
             data["Application"]="Approved" if ans["prediction"]==1 else "rejected"
-            response=requests.post("http://127.0.0.1:8000/save_data",json=data,headers={"Authorization": f"Bearer {st.session_state.token["token"]}"})
+            response=requests.post("https://loan-aproval-model.onrender.com/save_data",json=data,headers={"Authorization": f"Bearer {st.session_state.token["token"]}"})
             if response.status_code==200:
                 st.write("data loaded succesfully")
    
