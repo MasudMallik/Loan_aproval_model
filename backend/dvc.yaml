@@ -1,21 +1,21 @@
 stages:
   backend/data_ingestion:
-    cmd: python  backend/data_ingestion.py
+    cmd: python  data_ingestion.py
     deps: 
       - data/loan_data.csv
-      - backend/data_ingestion.py
+      - data_ingestion.py
   backend/data_preprocess:
-    cmd: python  backend/data_preprocess.py
+    cmd: python  data_preprocess.py
     deps:
       - data/loan_data.csv
-      - backend/data_preprocess.py
+      - data_preprocess.py
     outs:
       - data/preprocessed.csv
   backend/model_train:
-    cmd: python  backend/model_train.py
+    cmd: python  model_train.py
     deps:
       - data/preprocessed.csv
-      - backend/model_train.py
+      - model_train.py
     outs:
       - loan_predict.joblib
   # backend/main:

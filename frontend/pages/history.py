@@ -5,7 +5,7 @@ st.set_page_config(layout="wide")
 if "user" not in st.session_state:
     st.warning("For previewing your history please login first")
 else:
-    response=requests.post("https://loan-aproval-model.onrender.com/get_data",headers={"Authorization": f"Bearer {st.session_state.token["token"]}"})
+    response=requests.post("http://127.0.0.1:8000/get_data",headers={"Authorization": f"Bearer {st.session_state.token["token"]}"})
     if response.status_code==200:
         st.write("History...")
         data = response.json()

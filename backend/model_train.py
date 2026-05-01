@@ -13,7 +13,7 @@ from logger import logging
 import joblib
 from sklearn.pipeline import Pipeline
 
-df=pd.read_csv("D:\\Loan_aproval\\Loan_aproval_model\\data\\preprocessed.csv",index_col=0)
+df=pd.read_csv("data\preprocessed.csv",index_col=0)
 y=df["loan_status"]
 x=df.drop(columns="loan_status")
 

@@ -145,7 +145,7 @@ async def get_details(token: str = Depends(outh2)):
 async def save_data_in_database(request:Request,token:str=Depends(outh2)):
     data=await request.json()
     user= decode_token(token)
-    print(user)
+    
     if not user or "email" not in user:
         return {"error": "Invalid or expired token"}
     email=user.get("email")

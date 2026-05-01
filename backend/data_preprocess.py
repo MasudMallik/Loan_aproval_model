@@ -7,7 +7,7 @@ import joblib
  
 
 try:
-    df=pd.read_csv("D:\\Loan_aproval\\Loan_aproval_model\\data\\loan_data.csv")
+    df=pd.read_csv("data\loan_data.csv")
     logging.info("data_loaded succesfully")
 except Exception:
     logging.info("data not loaded")
