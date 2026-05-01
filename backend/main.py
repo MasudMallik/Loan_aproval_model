@@ -112,6 +112,7 @@ async def user_register_(user:register):
 async def predict_data(data: LoanData):
 
     subprocess.run(["dvc", "pull"], check=True)
+    global preprocess,model
     with open("preprocess.joblib","rb") as f:
         preprocess=joblib.load(f)
     input_dict = data.dict()
