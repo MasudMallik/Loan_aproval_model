@@ -1,7 +1,6 @@
 
 from fastapi import FastAPI,Request,Depends,BackgroundTasks
 from fastapi.security import OAuth2PasswordBearer
-import subprocess
 from upstash_redis import Redis
 import joblib
 from logger import logging
@@ -110,9 +109,6 @@ async def user_register_(user:register):
 
 @app.post("/predict")
 async def predict_data(data: LoanData):
-
-    subprocess.run(["dvc", "pull"], check=True)
-    global preprocess,model
     with open("preprocess.joblib","rb") as f:
         preprocess=joblib.load(f)
     input_dict = data.dict()
